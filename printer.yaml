@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: debug-pod
+  name: debug-pod
+  namespace: debezium-example
+spec:
+  containers:
+  - image: gprocida6g/printer:1.0
+    name: debug-pod
+    resources: {}
+    imagePullPolicy: Never
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
