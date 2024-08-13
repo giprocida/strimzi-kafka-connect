@@ -7,7 +7,7 @@ metadata:
     strimzi.io/use-connector-resources: "true"
 spec:
   version: 3.7.1
-  image: 10.99.211.20/debezium-connect-mysql:latest
+  image: 110.104.133.128/debezium-connect-mysql:latest
   replicas: 1
   bootstrapServers: debezium-cluster-kafka-bootstrap:9092
   config:

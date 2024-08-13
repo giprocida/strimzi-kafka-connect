@@ -23,7 +23,7 @@ spec:
   build:
     output:
       type: docker
-      image: 10.99.211.20/debezium-connect-mysql:latest
+      image: 10.96.151.122/debezium-connect-mysql:latest
     plugins:
       - name: debezium-mysql-connector
         artifacts:
