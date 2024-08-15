@@ -73,7 +73,7 @@ Next, enable the registry addon:
  minikube addons enable registry -p debezium-cluster
 ```
 
-#### What do theses two commands do? ####
+##### What do theses two commands do? #####
 
 * minikube start --insecure-registry: This command configures the Minikube Docker daemon to accept connections from insecure Docker registries. It does not create a registry. Instead, it allows the Docker daemon to communicate over HTTP (an insecure protocol) with registries within the specified IP range (10.0.0.0/24). You can verify this by running docker info and checking the list of insecure registries.
 
