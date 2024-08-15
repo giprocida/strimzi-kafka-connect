@@ -59,7 +59,7 @@ Custom Resources using Strimzi Kafka CRD:
 3. KafkaConnector which configures the connector for capturing changes from MySQL and streaming them to Kafka (`debezium-connector.yaml`)
 
 
-#### Important Notes ####
+### Important Notes ###
 
 **Minikube tips**: Using the `-p` Flag is highly recommended when working with Minikube, as it applies configurations to a specific cluster. For example, you can start Minikube with the `--insecure-registry` flag for a cluster named `debezium-cluster`:
 
@@ -120,13 +120,13 @@ Follow the steps below to learn more:
 1. Configure your shell to use Minikube's Docker daemon. 
 Minikube has its own Docker daemon. To build Docker images directly within Minikube, you need to point your shell to 
 Minikube's Docker daemon.
-Check the Docker environment for Minikube:
+Check the Docker environment for the `debezium-cluster` cluster:
 ```
-minikube docker-env
+minikube docker-env  -p debezium-cluster
 ```
 Point your shell to minikube's docker-daemon, run:
 ```
-eval $(minikube docker-env)
+eval $(minikube -p debezium-cluster docker-env)
 ```
 To make sure that your Docker CLI is now configured to use the Docker daemon inside your Minikube environment, run:
 ```
