@@ -60,6 +60,33 @@ Custom Resources using Strimzi Kafka CRD:
 
 
 #### Important Notes ####
+
+**Minikube tips**: Using the `-p` Flag is highly recommended when working with Minikube, as it applies configurations to a specific cluster. For example, you can start Minikube with the `--insecure-registry` flag for a cluster named `debezium-cluster`:
+
+```
+ minikube start --insecure-registry "10.0.0.0/24" -p debezium-cluster
+```
+
+Next, enable the registry addon:
+
+```
+ minikube addons enable registry -p debezium-cluster
+```
+
+#### What do theses two commands do? ####
+
+* minikube start --insecure-registry: This command configures the Minikube Docker daemon to accept connections from insecure Docker registries. It does not create a registry. Instead, it allows the Docker daemon to communicate over HTTP (an insecure protocol) with registries within the specified IP range (10.0.0.0/24). You can verify this by running docker info and checking the list of insecure registries.
+
+* minikube addons enable registry: This command deploys a Docker registry as a service inside the Minikube Kubernetes cluster. This registry allows you to push and pull Docker images within the cluster. To confirm that the registry is running, execute:
+
+```
+kubectl get svc -n kube-system
+```
+
+Look for a service named `registry` in the output.
+
+
+
 **Issue with KafkaConnect configuration**: When applying the configuration file from the [Debezium documentation](https://debezium.io/documentation/reference/stable/operations/kubernetes.html), you may encounter issues with the version field specified in the YAML file. To resolve this, update the version from 3.1.0 to 3.7.1, or alternatively, use the `debezium-connect-cluster.yaml` file directly.
 
 **Issue with Shell Commands**: When creating the KafkaConnector using shell commands as suggested in the tutorial, you may encounter issues with reading database credentials. It is recommended to store the YAML configuration in a file and apply it using kubectl apply -f ..... For more information, refer to this Stack Overflow post for troubleshooting [KafkaConnector not reading database credentials](https://stackoverflow.com/questions/75831703/strimzi-kafkaconnector-not-reading-database-credentials-from-secrets).
