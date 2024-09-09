@@ -34,8 +34,8 @@ Docker Desktop simplifies development with a unified Docker and Kubernetes envir
 
 
 ## Deploying Debezium on Minikube ##
-This guide complements the official Debezium documentation by highlighting key steps and providing additional resources to help you avoid common issues. Follow the [Debezium documentation](https://debezium.io/documentation/reference/stable/operations/kubernetes.html) as the primary source for deploying Debezium on Minikube.
 
+This guide complements the official Debezium documentation by highlighting key steps and providing additional resources to help you avoid common issues. It also provides detailed instructions on creating a separate Kubernetes cluster which is necessay for Debezium cluster. Follow the [Debezium documentation](https://debezium.io/documentation/reference/stable/operations/kubernetes.html) as the primary source for deploying Debezium on Minikube.
 
 Kubernetes files to deploy:
 
@@ -91,11 +91,15 @@ Look for a service named `registry` in the output.
 
 **Issue with Shell Commands**: When creating the KafkaConnector using shell commands as suggested in the tutorial, you may encounter issues with reading database credentials. It is recommended to store the YAML configuration in a file and apply it using kubectl apply -f ..... For more information, refer to this Stack Overflow post for troubleshooting [KafkaConnector not reading database credentials](https://stackoverflow.com/questions/75831703/strimzi-kafkaconnector-not-reading-database-credentials-from-secrets).
 
+**Issue with brokers not coming up**: Here’s an improved version of the sentence for documentation purposes:
 
-**Why two debezium-connect-cluster files?**: 
+**Issue: Brokers Not Starting**: To resolve this, restart the `strimzi-cluster-operator` and reapply the `debezium-cluster.yaml` configuration file.
+
+**Why three debezium-connect-cluster files?**: 
 
 * `debezium-connect-cluster-custombuild.yaml`: Indicates that the configuration involves a custom build process and includes plugins.
 * `debezium-connect-cluster-prebuiltimage.yaml`: Indicates that the configuration uses a pre-built image without additional build steps or plugins.
+
 
 
 
@@ -122,7 +126,7 @@ Minikube has its own Docker daemon. To build Docker images directly within Minik
 Minikube's Docker daemon.
 Check the Docker environment for the `debezium-cluster` cluster:
 ```
-minikube docker-env  -p debezium-cluster
+minikube docker-env -p debezium-cluster
 ```
 Point your shell to minikube's docker-daemon, run:
 ```
