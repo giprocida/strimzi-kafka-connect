@@ -91,7 +91,7 @@ Look for a service named `registry` in the output.
 
 **Issue with Shell Commands**: When creating the KafkaConnector using shell commands as suggested in the tutorial, you may encounter issues with reading database credentials. It is recommended to store the YAML configuration in a file and apply it using kubectl apply -f ..... For more information, refer to this Stack Overflow post for troubleshooting [KafkaConnector not reading database credentials](https://stackoverflow.com/questions/75831703/strimzi-kafkaconnector-not-reading-database-credentials-from-secrets).
 
-**Issue with brokers not coming up**: Here’s an improved version of the sentence for documentation purposes:
+
 
 **Issue: Brokers Not Starting**: To resolve this, restart the `strimzi-cluster-operator` and reapply the `debezium-cluster.yaml` configuration file.
 
